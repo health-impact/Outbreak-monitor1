@@ -1,0 +1,115 @@
+{
+  "sectors": [
+    {
+      "id": "SD",
+      "name": "قطاع السودان (الجنوب الشرقي)",
+      "country_code": "SD",
+      "ports": "منفذ العوينات البري — مطار الكفرة",
+      "municipalities": [
+        "الكفرة",
+        "تازربو",
+        "ربيانة"
+      ],
+      "coords": [
+        24.18,
+        23.3
+      ],
+      "mobility_weight": 0.85,
+      "health_gap": 0.85,
+      "wash_deficit": 0.8,
+      "primary_threat": "IMM-03"
+    },
+    {
+      "id": "TD",
+      "name": "قطاع تشاد (الجنوب)",
+      "country_code": "TD",
+      "ports": "منفذ التوم البري — القطرون",
+      "municipalities": [
+        "مرزق",
+        "القطرون",
+        "سبها"
+      ],
+      "coords": [
+        24.93,
+        14.64
+      ],
+      "mobility_weight": 0.7,
+      "health_gap": 0.8,
+      "wash_deficit": 0.75,
+      "primary_threat": "WKL-15"
+    },
+    {
+      "id": "NE",
+      "name": "قطاع النيجر (الجنوب الغربي)",
+      "country_code": "NE",
+      "ports": "منفذ تومو الحدودي — غات",
+      "municipalities": [
+        "غات",
+        "أوباري"
+      ],
+      "coords": [
+        24.96,
+        10.18
+      ],
+      "mobility_weight": 0.75,
+      "health_gap": 0.8,
+      "wash_deficit": 0.8,
+      "primary_threat": "IMM-07"
+    },
+    {
+      "id": "TN",
+      "name": "قطاع تونس (الشمال الغربي)",
+      "country_code": "TN",
+      "ports": "منفذ رأس جدير — منفذ وازن",
+      "municipalities": [
+        "زوارة",
+        "نالوت"
+      ],
+      "coords": [
+        33.15,
+        11.57
+      ],
+      "mobility_weight": 0.95,
+      "health_gap": 0.3,
+      "wash_deficit": 0.2,
+      "primary_threat": "IMM-06"
+    },
+    {
+      "id": "EG",
+      "name": "قطاع مصر (الشرق)",
+      "country_code": "EG",
+      "ports": "منفذ امساعد البري — ميناء طبرق",
+      "municipalities": [
+        "امساعد",
+        "طبرق",
+        "الجغبوب"
+      ],
+      "coords": [
+        31.58,
+        25.05
+      ],
+      "mobility_weight": 0.9,
+      "health_gap": 0.4,
+      "wash_deficit": 0.3,
+      "primary_threat": "WKL-13"
+    },
+    {
+      "id": "DZ",
+      "name": "قطاع الجزائر (الغرب)",
+      "country_code": "DZ",
+      "ports": "منفذ غدامس البري — الدبداب",
+      "municipalities": [
+        "غدامس",
+        "درج"
+      ],
+      "coords": [
+        30.13,
+        9.5
+      ],
+      "mobility_weight": 0.5,
+      "health_gap": 0.45,
+      "wash_deficit": 0.35,
+      "primary_threat": "IMM-09"
+    }
+  ]
+}
