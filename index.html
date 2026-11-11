@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
@@ -36,7 +36,7 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { background: var(--bg-base); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
 
-/* الترويسة الرئيسية الأنيقة */
+/* الترويسة الرئيسية */
 header {
   background: var(--bg-surface);
   border-bottom: 1px solid var(--border);
@@ -153,9 +153,30 @@ h1 { font-size: 1.15rem; font-weight: 700; color: #fff; }
   z-index: 1000;
 }
 
-/* إزالة أي خلفية بيضاء للخريطة لضمان مظهر ليلي نقي بدون أي هالات */
-#map { flex: 1; width: 100%; min-height: 480px; background: #090e11 !important; }
-.leaflet-container { background: #090e11 !important; }
+#map { flex: 1; width: 100%; min-height: 480px; background: #0b1115 !important; }
+.leaflet-container { background: #0b1115 !important; font-family: "IBM Plex Sans Arabic", sans-serif; }
+
+/* تحويل خريطة قوقل ماب إلى الوضع الليلي التكتيكي مع الحفاظ على وضوح الأسماء والحدود العربية */
+.google-dark-tiles {
+  filter: invert(90%) hue-rotate(180deg) brightness(94%) contrast(96%);
+}
+
+/* تنسيق أداة التبديل بين أنماط خرائط قوقل */
+.leaflet-control-layers {
+  background: rgba(16, 25, 30, 0.95) !important;
+  color: var(--text-main) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 8px !important;
+  padding: 6px 10px !important;
+  font-size: 0.8rem !important;
+}
+.leaflet-control-layers-expanded label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+  cursor: pointer;
+}
 
 .map-legend {
   position: absolute;
@@ -312,7 +333,7 @@ th, td { padding: 10px 16px; border-bottom: 1px solid var(--border); text-align:
 th { background: var(--bg-card); color: var(--text-muted); font-weight: 600; }
 tr:hover { background: var(--bg-card-hover); }
 
-/* نافذة تقرير الموقف الاستراتيجي الرسمي - مستقلة تماماً بدون تبعية مؤسسية */
+/* نافذة تقرير الموقف الاستراتيجي الرسمي */
 #sitrep-modal {
   display: none;
   position: fixed;
@@ -472,7 +493,7 @@ tr:hover { background: var(--bg-card-hover); }
 <div class="kpi-row">
   <div class="kpi-card">
     <span class="kpi-title">مؤشر الخطر العام</span>
-    <div class="kpi-value" id="kpi-national" style="color:var(--c-orange)">24.7% <span class="badge bg-green">رصد</span></div>
+    <div class="kpi-value" id="kpi-national" style="color:var(--c-orange)">23.2% <span class="badge bg-green">رصد</span></div>
     <span class="kpi-sub">أعلى تهديد قادم من الحدود الجنوبية</span>
   </div>
   <div class="kpi-card">
@@ -495,8 +516,8 @@ tr:hover { background: var(--bg-card-hover); }
 <div class="main-layout">
   <div class="map-container-box">
     <div class="map-header">
-      <div style="font-weight:600; font-size:0.9rem;">الخريطة الحرارية التفاعلية للمنافذ وبؤر العبور</div>
-      <span style="font-size:0.75rem; color:var(--text-muted);">انقر على أي منفذ لعرض بيانات التنبؤ والطقس الميداني</span>
+      <div style="font-weight:600; font-size:0.9rem;">خريطة قوقل الحرارية التفاعلية للمنافذ وبؤر العبور</div>
+      <span style="font-size:0.75rem; color:var(--text-muted);">يمكنك التبديل بين الخريطة الليلية أو القمر الصناعي من الزاوية</span>
     </div>
     <div id="map"></div>
     <div class="map-legend">
@@ -567,7 +588,7 @@ tr:hover { background: var(--bg-card-hover); }
   </div>
 </div>
 
-<!-- نافذة تقرير الموقف الاستراتيجي الرسمي - مستقلة تماماً بدون مؤسسات -->
+<!-- نافذة تقرير الموقف الاستراتيجي الرسمي -->
 <div id="sitrep-modal">
   <div class="sitrep-sheet">
     <div class="sitrep-modal-controls">
@@ -599,7 +620,7 @@ tr:hover { background: var(--bg-card-hover); }
     <div class="sitrep-section">
       <h3>أولاً: ملخص الموقف العام ومؤشر التهديد الحاكم</h3>
       <p style="font-size:0.85rem; line-height:1.6; color:#1e293b;">
-        بناءً على عمليات الرصد الميداني ومطابقة نماذج التنبؤ الرياضية والطقس اللحظي، يستقر مؤشر الخطر العام عند <strong><span id="rep-national-score">24.7%</span> (مستوى الرصد والتأهب الوقائي)</strong>. تم تسجيل أعلى تهديد وبائي حاكم باتجاه الحدود الجنوبية الشرقية (قطاع السودان - منفذ العوينات البري).
+        بناءً على عمليات الرصد الميداني ومطابقة نماذج التنبؤ الرياضية والطقس اللحظي، يستقر مؤشر الخطر العام عند <strong><span id="rep-national-score">23.2%</span> (مستوى الرصد والتأهب الوقائي)</strong>. تم تسجيل أعلى تهديد وبائي حاكم باتجاه الحدود الجنوبية الشرقية (قطاع السودان - منفذ العوينات البري).
       </p>
     </div>
 
@@ -642,8 +663,20 @@ tr:hover { background: var(--bg-card-hover); }
 </div>
 
 <script>
+// تنظيف أي كاش قديم من Service Worker لضمان ظهور التحديثات فوراً
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js').catch(function() {});
+  navigator.serviceWorker.getRegistrations().then(function(regs) {
+    for (var i = 0; i < regs.length; i++) {
+      regs[i].unregister();
+    }
+  });
+}
+if ('caches' in window) {
+  caches.keys().then(function(names) {
+    for (var j = 0; j < names.length; j++) {
+      caches.delete(names[j]);
+    }
+  });
 }
 
 var ALL_DISEASES = [
@@ -697,15 +730,37 @@ var ALL_DISEASES = [
   {code:"WKL-29", ar:"كوفيد-19", en:"COVID-19", tier:"أسبوعي", mode:"تنفسي سريع الانتشار", inc:"14 يوم", bench:"1% CFR"}
 ];
 
-// تهيئة الخريطة الليلية باستخدام خادم CartoDB Dark Matter لضمان خلو الخريطة من أي بقع أو هالات بيضاء
-var map = L.map('map', { zoomControl: false }).setView([27.2, 17.5], 5.4);
+// طبقات خرائط Google Maps باللغة العربية
+var googleDark = L.tileLayer('https://mt1.google.com/vt/lyrs=m&hl=ar&x={x}&y={y}&z={z}', {
+  attribution: 'Rasad EWS &copy; Google Maps',
+  maxZoom: 18,
+  className: 'google-dark-tiles'
+});
+
+var googleHybrid = L.tileLayer('https://mt1.google.com/vt/lyrs=y&hl=ar&x={x}&y={y}&z={z}', {
+  attribution: 'Rasad EWS &copy; Google Satellite',
+  maxZoom: 18
+});
+
+var googleStreets = L.tileLayer('https://mt1.google.com/vt/lyrs=m&hl=ar&x={x}&y={y}&z={z}', {
+  attribution: 'Rasad EWS &copy; Google Maps',
+  maxZoom: 18
+});
+
+var map = L.map('map', {
+  zoomControl: false,
+  layers: [googleDark]
+}).setView([27.2, 17.5], 5.4);
+
 L.control.zoom({ position: 'topleft' }).addTo(map);
 
-L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-  attribution: 'Rasad EWS — Esri',
-  maxZoom: 16
-}).addTo(map);
-
+// أداة تبديل أنماط خريطة قوقل (ليلي / قمر صناعي / قياسي)
+var baseMaps = {
+  "قوقل ماب (الوضع الليلي)": googleDark,
+  "قوقل قمر صناعي (Hybrid)": googleHybrid,
+  "قوقل ماب (الوضع القياسي)": googleStreets
+};
+L.control.layers(baseMaps, null, { position: 'topright' }).addTo(map);
 
 var heatLayer = null;
 var markersGroup = L.layerGroup().addTo(map);
@@ -877,7 +932,7 @@ function applyData(data) {
     updateSOPMatrix(topSector.level, topSector);
   }
 
-  // تحديث القائمة الجانبية وتوليد الخريطة الحرارية التفاعلية الحقيقية
+  // تحديث القائمة الجانبية وتوليد الخريطة الحرارية التفاعلية فوق خريطة قوقل
   var sectorContainer = document.getElementById('sectors-list');
   sectorContainer.innerHTML = '';
   markersGroup.clearLayers();
@@ -890,7 +945,6 @@ function applyData(data) {
     var lat = sec.coords[0];
     var lng = sec.coords[1];
 
-    // نشر سحابة حرارية واقعية تحيط بالمنفذ ومسار العبور الحدودي
     heatPoints.push([lat, lng, baseIntensity]);
     heatPoints.push([lat + 0.35, lng + 0.25, baseIntensity * 0.85]);
     heatPoints.push([lat - 0.35, lng - 0.25, baseIntensity * 0.85]);
@@ -899,22 +953,20 @@ function applyData(data) {
     heatPoints.push([lat, lng + 0.5, baseIntensity * 0.7]);
     heatPoints.push([lat, lng - 0.5, baseIntensity * 0.7]);
 
-    // هالة إشعاعية تكتيكية شفافة بلون الخطر المحسوب (بدون أي لون أبيض نهائياً)
     L.circleMarker(sec.coords, {
-      radius: 20,
+      radius: 18,
       fillColor: colorMapHex[sec.level] || '#00b4d8',
       color: colorMapHex[sec.level] || '#00b4d8',
       weight: 1,
-      opacity: 0.4,
+      opacity: 0.45,
       fillOpacity: 0.15
     }).addTo(markersGroup);
 
-    // النواة التكتيكية للمنفذ الحدودي
     var marker = L.circleMarker(sec.coords, {
       radius: 6,
       fillColor: colorMapHex[sec.level] || '#00b4d8',
-      color: colorMapHex[sec.level] || '#00b4d8',
-      weight: 2,
+      color: '#ffffff',
+      weight: 1.5,
       opacity: 1,
       fillOpacity: 0.95
     }).addTo(markersGroup);
@@ -942,7 +994,6 @@ function applyData(data) {
     sectorContainer.appendChild(item);
   });
 
-  // رسم طبقة التأثير الحراري التوهجي (Epidemiological Heatmap Glow)
   if (heatLayer) {
     map.removeLayer(heatLayer);
   }
@@ -969,15 +1020,15 @@ async function initDashboard() {
   setTimeout(function() { map.invalidateSize(); }, 350);
   
   var fallback = {
-    national_score: 24.7,
-    flash_report: "🚨 بلاغ استخباري عاجل لغرفة العمليات المركزية:\nالمرض الحاكم: الهيضة (الكوليرا) IMM-03\nالقطاع: قطاع السودان (الجنوب الشرقي)\nالمنافذ: منفذ العوينات البري — مطار الكفرة\nالبلديات المهددة: الكفرة، تازربو، ربيانة\nالمؤشر المحسوب: 42.0% (مستوى التنبيه المبكر)\nالطقس الميداني: 26.6°C، رطوبة 23%\nالتوجيه الميداني: تفعيل بروتوكول التدخل الأصفر بالمنافذ الجنوبية ومراجعة مخزون محاليل Ringer Lactate فوراً بمستشفى الكفرة العام.",
+    national_score: 23.2,
+    flash_report: "🚨 بلاغ عاجل لإدارة الرصد والاستجابة السريعة:\nالمرض: الهيضة (الكوليرا) (IMM-03)\nالقطاع: قطاع السودان (الجنوب الشرقي)\nالمنافذ المستهدفة: منفذ العوينات البري — مطار الكفرة\nالبلديات المهددة: الكفرة، تازربو، ربيانة\nمؤشر التهديد المحسوب: 42.0% (المستوى: YELLOW)\nالطقس الميداني بالمنفذ: 17.9°C، رطوبة 45%\nالتوجيه: تفعيل الرصد النشط وفحص الوافدين فوراً، وتأمين المخزون الوقائي بمستشفى القطاع.",
     sectors: [
-      { id: "SD", name: "قطاع السودان (الجنوب الشرقي)", ports: "منفذ العوينات البري — مطار الكفرة", municipalities: ["الكفرة"], threat: "الهيضة (الكوليرا) IMM-03", score: 42.0, level: "yellow", coords: [24.18, 23.30] },
-      { id: "TD", name: "قطاع تشاد (الجنوب)", ports: "منفذ التوم البري — القطرون", municipalities: ["مرزق", "القطرون"], threat: "البرداء (الملاريا) WKL-15", score: 28.5, level: "yellow", coords: [24.93, 14.64] },
-      { id: "NE", name: "قطاع النيجر (الجنوب الغربي)", ports: "منفذ تومو الحدودي — غات", municipalities: ["غات"], threat: "الالتهاب السحائي IMM-07", score: 21.0, level: "green", coords: [24.96, 10.18] },
-      { id: "TN", name: "قطاع تونس (الشمال الغربي)", ports: "منفذ رأس جدير — منفذ وازن", municipalities: ["زوارة", "نالوت"], threat: "الحصبة IMM-06", score: 18.2, level: "green", coords: [33.15, 11.57] },
-      { id: "EG", name: "قطاع مصر (الشرق)", ports: "منفذ امساعد البري — طبرق", municipalities: ["امساعد", "طبرق"], threat: "الأنفلونزا WKL-13", score: 14.5, level: "green", coords: [31.58, 25.05] },
-      { id: "DZ", name: "قطاع الجزائر (الغرب)", ports: "منفذ غدامس البري — الدبداب", municipalities: ["غدامس"], threat: "الحميات النزفية IMM-09", score: 11.0, level: "green", coords: [30.13, 9.50] }
+      { id: "SD", name: "قطاع السودان (الجنوب الشرقي)", ports: "منفذ العوينات البري — مطار الكفرة", municipalities: ["الكفرة", "تازربو", "ربيانة"], threat: "الهيضة (الكوليرا) (IMM-03)", score: 42.0, level: "yellow", coords: [24.18, 23.30] },
+      { id: "TD", name: "قطاع تشاد (الجنوب)", ports: "منفذ التوم البري — القطرون", municipalities: ["مرزق", "القطرون"], threat: "البرداء (الملاريا) (WKL-15)", score: 26.9, level: "yellow", coords: [24.93, 14.64] },
+      { id: "EG", name: "قطاع مصر (الشرق)", ports: "منفذ امساعد البري — ميناء طبرق", municipalities: ["امساعد", "طبرق"], threat: "الأنفلونزا الموسمية (WKL-13)", score: 22.0, level: "green", coords: [31.58, 25.05] },
+      { id: "NE", name: "قطاع النيجر (الجنوب الغربي)", ports: "منفذ تومو الحدودي — غات", municipalities: ["غات"], threat: "الالتهاب السحائي الوبائي (IMM-07)", score: 18.7, level: "green", coords: [24.96, 10.18] },
+      { id: "TN", name: "قطاع تونس (الشمال الغربي)", ports: "منفذ رأس جدير — منفذ وازن", municipalities: ["زوارة", "نالوت"], threat: "الحصبة (IMM-06)", score: 15.5, level: "green", coords: [33.15, 11.57] },
+      { id: "DZ", name: "قطاع الجزائر (الغرب)", ports: "منفذ غدامس البري — الدبداب", municipalities: ["غدامس"], threat: "الحميات النزفية الفيروسية (IMM-09)", score: 14.1, level: "green", coords: [30.13, 9.50] }
     ]
   };
 
@@ -999,4 +1050,3 @@ initDashboard();
 </script>
 </body>
 </html>
-
