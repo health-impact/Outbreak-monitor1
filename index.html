@@ -701,11 +701,11 @@ var ALL_DISEASES = [
 var map = L.map('map', { zoomControl: false }).setView([27.2, 17.5], 5.4);
 L.control.zoom({ position: 'topleft' }).addTo(map);
 
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-  attribution: 'Rasad EWS &copy; CARTO',
-  subdomains: 'abcd',
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+  attribution: 'Rasad EWS — Esri',
   maxZoom: 16
 }).addTo(map);
+
 
 var heatLayer = null;
 var markersGroup = L.layerGroup().addTo(map);
