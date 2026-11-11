@@ -1,0 +1,45 @@
+name: Sync Outbreak & Risk Data
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install pyyaml requests
+
+      - name: Run Risk Engine
+        run: |
+          if [ -f "ews/pipeline.py" ]; then
+            python -m ews.pipeline
+          elif [ -f "pipeline.py" ]; then
+            python pipeline.py
+          fi
+          mkdir -p data
+          if [ -f "risk_data.json" ]; then
+            cp risk_data.json data/risk_data.json
+          fi
+
+      - name: Commit & Push updated data
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "Rasad EWS Bot"
+          git add -A
+          git diff --quiet && git diff --staged --quiet || git commit -m "chore: update epidemiological risk data"
+          git push
